@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian — Diseñador Web</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ====================
+           VARIABLES & RESET
+        ==================== */
+        :root {
+            /* Colores Modo Claro */
+            --bg-color: #f2f2f7;
+            --text-main: #111111;
+            --text-muted: #636366;
+            --card-bg: #ffffff;
+            --accent: #007aff;
+            --placeholder-color: #EBDDC2; /* Crema / Café claro */
+            --border-color: rgba(0,0,0,0.1);
+            --radius-lg: 32px;
+            --radius-full: 999px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ====================
+           MODO OSCURO (Automático)
+        ==================== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-main: #ffffff;
+                --text-muted: #a1a1aa;
+                --card-bg: #1c1c1e;
+                --border-color: rgba(255,255,255,0.15);
+                --accent: #0a84ff;
+                /* Mantenemos el crema en modo oscuro para que contraste con la tarjeta negra */
+                --placeholder-color: #D9C5B2; 
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        /* ====================
+           HERO / INTRO
+        ==================== */
+        .hero {
+            margin-bottom: 5rem;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-gray {
+            color: var(--text-muted);
+        }
+
+        .inline-avatar {
+            display: inline-block;
+            vertical-align: middle;
+            width: clamp(45px, 7vw, 75px);
+            height: clamp(45px, 7vw, 75px);
+            border-radius: var(--radius-full);
+            background-color: #e5e5ea;
+            margin: 0 0.3rem;
+            margin-top: -5px;
+            border: 3px solid var(--bg-color);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inline-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            font-weight: 500;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        /* ====================
+           PROYECTOS 
+        ==================== */
+        .projects-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: scale(1.01) translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+
+        .project-image {
+            width: 100%;
+            height: clamp(250px, 40vw, 380px);
+            border-radius: 22px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--placeholder-color); /* Aplicamos el color crema */
+            transition: background-color 0.4s ease;
+        }
+
+        .project-image::after {
+            content: "Home Sweet Valmo";
+            font-weight: 800;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: rgba(0,0,0,0.15); /* Texto sutil sobre el crema */
+        }
+
+        .project-info {
+            padding: 0 0.5rem 0.5rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .project-arrow {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background-color: var(--bg-color);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover .project-arrow {
+            background-color: var(--accent);
+            color: #ffffff;
+            transform: rotate(45deg);
+            border-color: var(--accent);
+        }
+
+        /* ====================
+           FOOTER
+        ==================== */
+        .footer {
+            margin-top: 6rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .footer h2 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 800;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--text-main);
+            color: var(--card-bg);
+            padding: 1.25rem 2.5rem;
+            border-radius: var(--radius-full);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            background-color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1.5rem 1rem; }
+            .main-wrapper { padding-top: 2rem; }
+            .hero { margin-bottom: 3.5rem; }
+            .contact-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="main-wrapper">
+        
+        <section class="hero">
+            <h1>
+                Hola. <br>
+                Soy Cristian 
+                <span class="inline-avatar">
+                    <img src="perfil.jpg" alt="Cristian">
+                </span> <br>
+                <span class="text-gray">Diseñador Web.</span>
+            </h1>
+            <p>Me especializo en crear landing pages rápidas, seguras y con un diseño moderno. Convirtiendo ideas complejas en experiencias simples y hermosas.</p>
+        </section>
+
+        <section class="projects">
+            <h2 class="projects-header">Trabajos Recientes</h2>
+            
+            <div class="projects-list">
+                <a href="https://homesweetvalmo.com/" target="_blank" class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-info">
+                        <div>
+                            <h3 class="project-title">Home Sweet Valmo</h3>
+                            <p class="project-desc">Diseño Web • Inmobiliaria</p>
+                        </div>
+                        <div class="project-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <h2>¿Tienes un proyecto? <br><span class="text-gray">Hablemos.</span></h2>
+            <a href="mailto:hola@cristian.com" class="contact-btn">Enviar un mensaje</a>
+            
+            <div class="footer-links">
+                <a href="https://www.instagram.com/cristianestradaj/" target="_blank">Instagram</a>
+                <a href="https://wa.me/524425188347" target="_blank">WhatsApp</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+</html>
